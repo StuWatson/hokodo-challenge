@@ -1,3 +1,19 @@
-from django.shortcuts import render
+from rest_framework.views import APIView
+from rest_framework.response import Response
 
-# Create your views here.
+import requests
+
+from .serializers import BookSerializer
+
+
+class ListBooks(APIView):
+
+    def get(self):
+        req = requests.get('https://hokodo-frontend-interview.netlify.com/data.json')
+        json = req.json()
+
+        serializer = BookSerializer(data=json['books'], many=True)
+
+        if serializer.is_valid():
+            return Response(serializer.data)
+
