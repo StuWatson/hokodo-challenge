@@ -1,3 +1,4 @@
 hokodo_env
 *.pyc
 .idea/
+db.sqlite3
