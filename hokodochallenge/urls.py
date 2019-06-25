@@ -19,5 +19,5 @@ from .books.views import ListBooks
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('books', ListBooks.as_view())
+    path('books', ListBooks.as_view(), name='books')
 ]

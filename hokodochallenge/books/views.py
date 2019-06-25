@@ -8,7 +8,7 @@ from .serializers import BookSerializer
 
 class ListBooks(APIView):
 
-    def get(self):
+    def get(self, request):
         req = requests.get('https://hokodo-frontend-interview.netlify.com/data.json')
         json = req.json()
 
