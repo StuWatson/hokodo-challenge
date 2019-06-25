@@ -5,6 +5,7 @@ import requests
 
 from .serializers import BookSerializer
 
+
 class ListBooks(APIView):
 
     # Bonus feature: The requirements called for the data to be sortable by title or publication date
@@ -40,3 +41,31 @@ class ListBooks(APIView):
         return Response(data)
 
 
+class ListAuthors(APIView):
+    def get(self, request):
+        try:
+            req = requests.get('https://hokodo-frontend-interview.netlify.com/data.json')
+            json = req.json()
+
+            serializer = BookSerializer(data=json.get('books', ''), many=True)
+
+            if serializer.is_valid():
+                data = serializer.data
+
+            else:
+                return Response(status=500, data='There was an error reading the data - the format may have changed')
+        except:
+            return Response(status=500, data='There was an error fetching the data - the service may be unavailable')
+
+        authors = {}
+
+        for book in data:
+            if book['author'] not in authors:
+                authors[book['author']] = [book]
+            else:
+                authors[book['author']].append(book)
+
+        ## If a list of objects is preferred with keys 'name' and 'books' for each author, uncomment the following line:
+        # authors = [{'name': k, 'books': v} for k, v in authors.items()]
+
+        return Response(authors)
