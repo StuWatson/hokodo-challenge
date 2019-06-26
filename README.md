@@ -53,7 +53,7 @@ The httpretty library has been used for testing purposes. It allows us to mock h
 Currently it is only used to mock error responses to test the error handling, see Potential Improvements for how we could
 utilize this further
 ### Assumptions
-- The API will be publically available. The project currently implements no method of authentication or authorization,
+- The API will be publicly available. The project currently implements no method of authentication or authorization,
 if it were to be deployed to the internet, it would be accessible by anyone.
 - There is no requirement for logging or auditing. 
 ### Potential Improvements

@@ -1,6 +1,7 @@
 from .serializers import BookSerializer
 import requests
 
+
 def get_books():
     try:
         req = requests.get('https://hokodo-frontend-interview.netlify.com/data.json')
@@ -29,4 +30,3 @@ def sort_data(data, ordering):
         ordering = ordering[1:]
 
     return sorted(data, key=lambda i: i[ordering], reverse=reverse)
-

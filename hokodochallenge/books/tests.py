@@ -3,6 +3,7 @@ from rest_framework import status
 from rest_framework.test import APITestCase
 import httpretty
 
+
 class ListBookTests(APITestCase):
 
     def test_list_books(self):
@@ -21,7 +22,6 @@ class ListBookTests(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(response.data[0]['title'], 'You Don\'t Know JS')
         self.assertEqual(response.data[9]['title'], 'Designing Evolvable Web APIs with ASP.NET')
-
 
     def test_list_books_ordered_by_publish_date(self):
         url = reverse('books')
@@ -44,8 +44,6 @@ class ListBookTests(APITestCase):
         self.assertEqual(response.data['Dr. John Doe'][0]['id'], '17da4aea-6e54-43a3-aece-11b1362de170')
         self.assertEqual(response.data['Prof. John Doe'][1]['id'], '3ae372e9-b500-4f37-aacf-5569cae3bf77')
 
-
-
     @httpretty.activate
     def test_books_endpoint_error(self):
         httpretty.register_uri(
@@ -58,7 +56,6 @@ class ListBookTests(APITestCase):
         response = self.client.get(url)
         self.assertEqual(response.status_code, status.HTTP_500_INTERNAL_SERVER_ERROR)
         self.assertEqual(response.data, 'There was an error fetching the data - the service may be unavailable')
-
 
     @httpretty.activate
     def test_books_data_incorrect(self):
@@ -73,7 +70,6 @@ class ListBookTests(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_500_INTERNAL_SERVER_ERROR)
         self.assertEqual(response.data, 'There was an error reading the data - the format may have changed')
 
-
     @httpretty.activate
     def test_authors_endpoint_error(self):
         httpretty.register_uri(
@@ -86,7 +82,6 @@ class ListBookTests(APITestCase):
         response = self.client.get(url)
         self.assertEqual(response.status_code, status.HTTP_500_INTERNAL_SERVER_ERROR)
         self.assertEqual(response.data, 'There was an error fetching the data - the service may be unavailable')
-
 
     @httpretty.activate
     def test_authors_data_incorrect(self):
