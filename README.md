@@ -65,8 +65,11 @@ the tests will fail. We could improve this by mocking out the requests to the ex
 
 # Hokodo Programming Challenge 2 - Word Frequency Counter
 The word frequency calculator can be found in ```hokodo_frequency_challenge.py``` in the root of the project.
-## Running The Programme
-Execute the programme using ```python hokodo_frequency_challenge.py```
+## Getting Started
+### Prerequisites
+```You should have Python 3.x installed on your machine```
+### Running The Program
+Execute the program using ```python hokodo_frequency_challenge.py```
 
 You will be prompted for an input string - type in your input and hit enter
 
