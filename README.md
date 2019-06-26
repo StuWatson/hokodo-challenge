@@ -56,7 +56,7 @@ The httpretty library has been used for testing purposes. It allows us to mock h
 Currently it is only used to mock error responses to test the error handling, see Potential Improvements for how we could
 utilize this further
 ### Assumptions
-- The authors API can return a JSON object with author names as keys and lists of books as values e.g. 
+- The authors endpoint can return a JSON object with author names as keys and lists of books as values e.g. 
 ```
 {
     "Mrs. John Doe": [
