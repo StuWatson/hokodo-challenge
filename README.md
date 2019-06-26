@@ -38,6 +38,8 @@ wish to order on and prepend it with ```-``` to show the results in descending o
 Example urls:
 - ```localhost:8000/books?ordering=-title``` will return a list of books ordered by descending alphabetical title order
 - ```localhost:8000/books?ordering=published``` will return a list of books in ascending date order
+- ```locahost:8000/authors``` will return a JSON object with author names as keys and lists of books as values - see
+Assumptions section for another option
 ## Project Notes
 ### Design Decisions
 The project has been implemented using Django and Django Rest Framework. DRF in particular was chosen because it 
@@ -54,9 +56,54 @@ The httpretty library has been used for testing purposes. It allows us to mock h
 Currently it is only used to mock error responses to test the error handling, see Potential Improvements for how we could
 utilize this further
 ### Assumptions
+- The authors API can return a JSON object with author names as keys and lists of books as values e.g. 
+```
+{
+    "Mrs. John Doe": [
+        {
+            "id": "872179f2-4de2-4cde-a259-ee470d83d515",
+            "cover": "https://lorempixel.com/640/480/?ee470d83d515",
+            "isbn": "9781593275846",
+            "title": "Eloquent JavaScript, Second Edition",
+            "subtitle": "A Modern Introduction to Programming",
+            "published": "2014-12-14T00:00:00Z",
+            "publisher": "No Starch Press",
+            "pages": 472,
+            "description": "JavaScript lies at the heart of almost every modern web application, from social apps to the newest browser-based games. Though simple for beginners to pick up and play with, JavaScript is a flexible, complex language that you can use to build full-scale applications.",
+            "website": "http://eloquentjavascript.net/",
+            "author": "Mrs. John Doe"
+        }
+    ],
+    ...
+```
+- Alternatively, we can return a JSON array of Author objects containing keys ```name``` and ```books``` for each author.
+The code for this is currently commented out in ```views.py```. The tests will need to be updated to reflect this format e.g.
+```
+[
+    {
+        "name": "Mrs. John Doe",
+        "books": [
+            {
+                "id": "872179f2-4de2-4cde-a259-ee470d83d515",
+                "cover": "https://lorempixel.com/640/480/?ee470d83d515",
+                "isbn": "9781593275846",
+                "title": "Eloquent JavaScript, Second Edition",
+                "subtitle": "A Modern Introduction to Programming",
+                "published": "2014-12-14T00:00:00Z",
+                "publisher": "No Starch Press",
+                "pages": 472,
+                "description": "JavaScript lies at the heart of almost every modern web application, from social apps to the newest browser-based games. Though simple for beginners to pick up and play with, JavaScript is a flexible, complex language that you can use to build full-scale applications.",
+                "website": "http://eloquentjavascript.net/",
+                "author": "Mrs. John Doe"
+            }
+        ]
+    },
+    ...
+```
+
 - The API will be publicly available. The project currently implements no method of authentication or authorization,
 if it were to be deployed to the internet, it would be accessible by anyone.
-- There is no requirement for logging or auditing. 
+- There is no requirement for auditing or logging any more detailed than the default request logging in Django. 
 ### Potential Improvements
 - To reduce traffic to the external service, it might be useful to implement a caching strategy. It would be relatively
 simple with the current implementation to save the books in the reading list to a database and have subsequent requests
