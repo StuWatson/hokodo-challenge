@@ -28,6 +28,15 @@ with Django Rest Framework's Serializers to  serialize/deserialize the data. Dja
 6. Run the application with
     ```python manage.py runserver```
     
+7. Make HTTP GET requests to the ```localhost:8000/books``` and ```localhost:8000/authors``` endpoints. Alternatively,
+navigate to these urls in the browser to use Django Rest Framework's built in API Explorer
+
+8. To sort the results from the books endpoint use the ```ordering``` query param. Set the param to the field that you 
+wish to order on and prepend it with ```-``` to show the results in descending order
+
+Example urls:
+- ```localhost:8000/books?ordering=-title``` will return a list of books ordered by descending alphabetical title order
+- ```localhost:8000/books?ordering=published``` will return a list of books in ascending date order
 ## Project Notes
 ### Design Decisions
 The project has been implemented using Django and Django Rest Framework. DRF in particular was chosen because it 
