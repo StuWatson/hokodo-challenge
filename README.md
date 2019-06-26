@@ -27,3 +27,29 @@ with Django Rest Framework's Serializers to  serialize/deserialize the data. Dja
 
 6. Run the application with
     ```python manage.py runserver```
+    
+## Project Notes
+### Design Decisions
+The project has been implemented using Django and Django Rest Framework. DRF in particular was chosen because it 
+provides the capability to quickly provision a working REST API with minimal setup and includes useful features like
+a web based API explorer.
+
+The requests library has also been used to simplify the construction and execution of HTTP requests to an external service
+
+The application is entirely stateless. Should it need to handle high load/traffic, it can easily be horizontally scaled 
+simply by deploying more instances of the application across multiple machines with a load balancer in front of them.
+In this instance it may be useful to implement a centralized logging solution
+
+The httpretty library has been used for testing purposes. It allows us to mock http requests to the external service.
+Currently it is only used to mock error responses to test the error handling, see Potential Improvements for how we could
+utilize this further
+### Assumptions
+- The API will be publically available. The project currently implements no method of authentication or authorization,
+if it were to be deployed to the internet, it would be accessible by anyone.
+- There is no requirement for logging or auditing. 
+### Potential Improvements
+- To reduce traffic to the external service, it might be useful to implement a caching strategy. It would be relatively
+simple with the current implementation to save the books in the reading list to a database and have subsequent requests
+served by reading from the database. The cached records in the database could be refreshed after a specified time interval
+- The tests currently make live requests to the external service and compare against static values. Should the data change,
+the tests will fail. We could improve this by mocking out the requests to the external service
