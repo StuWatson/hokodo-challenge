@@ -7,7 +7,8 @@ These instructions will get the project running on your machine
 
 ### Prerequisites 
 ```
-You should have Python 3.x installed on your machine
+You should have Python 3.x and Pip installed on your machine
+Note: Depending on your local setup, you may need to replace 'pip' and 'python' with 'pip3' and 'python3'
 ```
 ### Installation
 1. Clone or download the source code
@@ -67,7 +68,10 @@ the tests will fail. We could improve this by mocking out the requests to the ex
 The word frequency calculator can be found in ```hokodo_frequency_challenge.py``` in the root of the project.
 ## Getting Started
 ### Prerequisites
-```You should have Python 3.x installed on your machine```
+```
+You should have Python 3.x installed on your machine
+Note: Depending on your local setup, you may need to replace 'python' with 'python3'
+```
 ### Running The Program
 Execute the program using ```python hokodo_frequency_challenge.py```
 
