@@ -6,7 +6,7 @@ A a simple, 2 endpoint JSON api that fetches data from an external source.
 These instructions will get the project running on your machine
 
 ### Prerequisites 
-```$xslt
+```
 You should have Python 3.x installed on your machine
 ```
 ### Installation
@@ -62,3 +62,11 @@ simple with the current implementation to save the books in the reading list to 
 served by reading from the database. The cached records in the database could be refreshed after a specified time interval
 - The tests currently make live requests to the external service and compare against static values. Should the data change,
 the tests will fail. We could improve this by mocking out the requests to the external service
+
+# Hokodo Programming Challenge 2 - Word Frequency Counter
+The word frequency calculator can be found in ```hokodo_frequency_challenge.py``` in the root of the project.
+## Running The Programme
+Execute the programme using ```python hokodo_frequency_challenge.py```
+
+You will be prompted for an input string - type in your input and hit enter
+
